@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <section
+      class="min-vh-100 d-flex align-items-center justify-content-center bg-light"
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg rounded-4 border-0">
+              <div class="card-body p-4">
+                <h2 class="text-center mb-3">Login</h2>
+                <p class="text-center text-muted mb-4">
+                  Don't have an account?
+                  <a
+                    href="signUp.html"
+                    class="text-primary fw-semibold text-decoration-none"
+                    >Sign Up</a
+                  >
+                </p>
+
+                <!-- Error Display (if needed) -->
+                <!-- <div class="alert alert-danger">Invalid input</div> -->
+
+                <form novalidate>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      Log In
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</html>

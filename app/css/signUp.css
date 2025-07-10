@@ -1,0 +1,22 @@
+body {
+  background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 1.5rem;
+}
+
+.card h2 {
+  font-weight: 600;
+}
+
+input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.btn {
+  border-radius: 0.75rem;
+  font-weight: 600;
+}

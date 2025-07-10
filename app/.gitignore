@@ -1,0 +1,28 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS user files
+*.swp
+~*
+*.lock
+*.bak
+
+# macOS Library folder (don't track system files)
+Library/
+~/Library/
+
+# Logs and temporary stuff
+*.log
+*.tmp
+npm-debug.log*
+.yarn-debug.log*
+.yarn-error.log*
+pnpm-debug.log*
+
+# Node modules
+node_modules/
+
+# VScode settings
+.vscode/
