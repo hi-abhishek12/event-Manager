@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home page</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <title>Home</title>
+
+    <link rel="stylesheet" href="/css/style.css">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
@@ -28,10 +29,14 @@
         </div>
 
         <div class="d-flex justify-content-around align-items-center col-4">
-          <a href="createEvent.html" class="text-decoration-none text-body nav-links"
+          <a
+            href="createEvent.ejs"
+            class="text-decoration-none text-body nav-links"
             >Create Event</a
           >
-          <a href="dashboard.html" class="text-decoration-none text-body nav-links"
+          <a
+            href="dashboard.ejs"
+            class="text-decoration-none text-body nav-links"
             >Dashboard</a
           >
           <a href="#" class="text-decoration-none text-body nav-links"
@@ -70,7 +75,7 @@
               <div class="col-md-6 text-center">
                 <img
                   class="img-fluid heroImg"
-                  src="assets/heroImg.jpg"
+                  src="/assets/heroImg.jpg"
                   alt="Event illustration"
                 />
               </div>
@@ -89,8 +94,10 @@
             <h1 class="text-center fw-bold text-dark mb-4">Upcoming Events</h1>
           </div>
         </div>
+
         <div class="row g-4">
           <!-- Event Card -->
+          <% data.forEach((item) => { %>
           <div class="col-md-4">
             <div
               class="card shadow-sm border-0 rounded-4 h-100 custom-event-card"
@@ -101,10 +108,9 @@
                 alt="Event image"
               />
               <div class="card-body py-3 px-4">
-                <h5 class="card-title fw-semibold mb-2">Event Title</h5>
+                <h5 class="card-title fw-semibold mb-2"><%= item.title %></h5>
                 <p class="card-text text-muted small">
-                  Learn web development basics in this interactive hands-on
-                  session.
+                  
                 </p>
                 <a
                   href="#"
@@ -114,54 +120,7 @@
               </div>
             </div>
           </div>
-
-          <div class="col-md-4">
-            <div
-              class="card shadow-sm border-0 rounded-4 h-100 custom-event-card"
-            >
-              <img
-                src=""
-                class="card-img-top rounded-top-4"
-                alt="Event image"
-              />
-              <div class="card-body py-3 px-4">
-                <h5 class="card-title fw-semibold mb-2">Event Title</h5>
-                <p class="card-text text-muted small">
-                  Learn web development basics in this interactive hands-on
-                  session.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-outline-dark btn-sm w-100 rounded-pill mt-2"
-                  >Book Now</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div
-              class="card shadow-sm border-0 rounded-4 h-100 custom-event-card"
-            >
-              <img
-                src=""
-                class="card-img-top rounded-top-4"
-                alt="Event image"
-              />
-              <div class="card-body py-3 px-4">
-                <h5 class="card-title fw-semibold mb-2">Event Title</h5>
-                <p class="card-text text-muted small">
-                  Learn web development basics in this interactive hands-on
-                  session.
-                </p>
-                <a
-                  href="#"
-                  class="btn btn-outline-dark btn-sm w-100 rounded-pill mt-2"
-                  >Book Now</a
-                >
-              </div>
-            </div>
-          </div>
+          <% }); %>
 
           <!-- Copy this structure for other cards -->
         </div>
@@ -199,5 +158,4 @@
     </footer>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
 </html>
