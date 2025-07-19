@@ -9,20 +9,12 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 
-app.get("/", async (req, res) => {
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "12345678",
-    database: "eventManager",
-  });
-  
-  let result = await connection.query('SELECT * FROM eventManager.appUsers')
-  connection.end();
+// Routing
 
-  res.render('index',{data : result[0]})
-});
+const route = require('./routes/webRoute')
+app.use('/',route);
 
 app.listen(port, () => {
   console.log(`app running on port ${port}`);
 });
+
