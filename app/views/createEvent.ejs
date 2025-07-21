@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../css/createEvent.css">
+    <link rel="stylesheet" href="../css/createEvent.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
@@ -18,11 +18,12 @@
           <div class="col-md-8 col-lg-6">
             <div class="card shadow rounded-4 border-0">
               <div class="card-body p-4">
-                <form>
+                <form method="post" action="/create-event-submit">
                   <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input
                       type="text"
+                      name="title"
                       class="form-control"
                       id="title"
                       placeholder="Enter event title"
@@ -37,24 +38,37 @@
                       class="form-control"
                       id="description"
                       rows="3"
+                      name="description"
                       placeholder="Enter description"
                     ></textarea>
                   </div>
 
                   <div class="mb-3">
-                    <label for="date-time" class="form-label"
-                      >Date & Time</label
-                    >
+                    <label for="date" class="form-label">Date</label>
                     <input
-                      type="datetime-local"
+                      type="date"
                       class="form-control"
-                      id="date-time"
+                      id="date"
+                      name="date"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="time" class="form-label">Time</label>
+                    <input
+                      type="time"
+                      class="form-control"
+                      id="time"
+                      name="time"
+                      required
                     />
                   </div>
 
                   <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
                     <input
+                      name="location"
                       type="text"
                       class="form-control"
                       id="location"
@@ -63,14 +77,24 @@
                   </div>
 
                   <div class="mb-3">
+                    <label for="seats" class="form-label">Total Seats</label>
+                    <input
+                      name="available_seats"
+                      type="number"
+                      class="form-control"
+                      id="seats"
+                      placeholder="Total seats"
+                    />
+                  </div>
+
+                  <div class="mb-3">
                     <label for="banner" class="form-label">Banner</label>
-                    <input type="file" class="form-control" id="banner" />
+                    <input type="file" class="form-control" id="banner" name="img" />
                   </div>
 
                   <button type="submit" class="btn btn-primary w-100">
                     Create Event
                   </button>
-
                 </form>
               </div>
             </div>
