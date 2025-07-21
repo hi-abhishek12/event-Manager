@@ -32,13 +32,14 @@
                 <!-- Error Display Here -->
                 <!-- <div class="alert alert-danger">Invalid input</div> -->
 
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" method="post" action="/signup">
                   <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input
                       type="text"
                       id="name"
                       class="form-control"
+                      name="username"
                       required
                     />
                   </div>
@@ -49,6 +50,7 @@
                       type="email"
                       id="email"
                       class="form-control"
+                      name="email"
                       required
                     />
                   </div>
@@ -59,6 +61,7 @@
                       type="password"
                       id="password"
                       class="form-control"
+                      name="password"
                       required
                     />
                   </div>
