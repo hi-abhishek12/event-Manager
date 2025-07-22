@@ -55,9 +55,12 @@
                   </div>
 
                   <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                      Log In
-                    </button>
+                    <%- include('components/button',{
+                    type : 'submit',
+                    className : 'btn btn-primary btn-lg',
+                    children : 'Log In '
+                  }) %>
+                
                   </div>
                 </form>
               </div>
