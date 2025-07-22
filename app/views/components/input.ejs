@@ -1,0 +1,14 @@
+<div class="mb-3">
+  <% if (typeof label !== 'undefined') { %>
+    <label for="<%= typeof id !== 'undefined' ? id : name %>" class="form-label"><%= label %></label>
+  <% } %>
+  <input
+    type="<%= typeof type !== 'undefined' ? type : 'text' %>"
+    class="<%= typeof className !== 'undefined' ? className : '' %>"
+    id="<%= typeof id !== 'undefined' ? id : name %>"
+    name="<%= name %>"
+    placeholder="<%= typeof placeholder !== 'undefined' ? placeholder : '' %>"
+    value="<%= typeof value !== 'undefined' ? value : '' %>"
+    required = "<%= typeof required !='undefined' ? required : ''%>"
+  />
+</div>

@@ -12,26 +12,7 @@
 </head>
 
 <body>
-  <div class="container-fluid p-3 overflow-hidden shadow">
-    <div class="row">
-      <div class="col-6 d-flex align-items-center justify-content-around">
-        <h1 class="d-inline-block fw-semibold fs-3">Event</h1>
-        <!-- <img src="NexEvent.png" class="logo"> -->
-        <input class="w-100 w-md-50 d-inline-block rounded-pill px-4 py-2 input-style" type="text" placeholder="🔍 Search events, categories..." />
-      </div>
-
-      <div class="d-flex justify-content-around align-items-center col-4">
-        <a href="/create-event" class="text-decoration-none text-body nav-links">Create Event</a>
-        <a href="dashboard.ejs" class="text-decoration-none text-body nav-links">Dashboard</a>
-        <a href="#" class="text-decoration-none text-body nav-links">Teahnology</a>
-      </div>
-
-      <div class="col-2 d-flex align-items-center justify-content-center">
-        <a class="btn modern-btn login-btn mx-2" href="/login">Login</a>
-        <a class="btn modern-btn signup-btn" href="/signup">Sign up</a>
-      </div>
-    </div>
-  </div>
+  <%- include('components/navbar') %>
 
   <!-- first Section -->
 

@@ -20,14 +20,14 @@
               <div class="card-body p-4">
                 <form method="post" action="/create-event-submit">
                   <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input
-                      type="text"
-                      name="title"
-                      class="form-control"
-                      id="title"
-                      placeholder="Enter event title"
-                    />
+                     <%- include('components/input', {
+                      name: 'text',
+                      label: 'Title',
+                      id: 'title',
+                      className: 'form-control',
+                      required : true,
+                      placeholder:"Enter Title"   
+                }) %>
                   </div>
 
                   <div class="mb-3">
@@ -39,57 +39,67 @@
                       id="description"
                       rows="3"
                       name="description"
-                      placeholder="Enter description"
+                      placeholder="Enter Description"
                     ></textarea>
                   </div>
 
                   <div class="mb-3">
-                    <label for="date" class="form-label">Date</label>
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="date"
-                      name="date"
-                      required
-                    />
+                     <%- include('components/input', {
+                      name: 'date',
+                      type: 'date',
+                      label: 'Date',
+                      id: 'date',
+                      className: 'form-control',
+                      required : true
+                }) %>
                   </div>
 
                   <div class="mb-3">
-                    <label for="time" class="form-label">Time</label>
-                    <input
-                      type="time"
-                      class="form-control"
-                      id="time"
-                      name="time"
-                      required
-                    />
+                    <%- include('components/input', {
+                      type : 'time',
+                      name: 'time',
+                      label: 'Time',
+                      id: 'time',
+                      className: 'form-control',
+                      required : true
+                }) %>
+              
                   </div>
 
                   <div class="mb-3">
-                    <label for="location" class="form-label">Location</label>
-                    <input
-                      name="location"
-                      type="text"
-                      class="form-control"
-                      id="location"
-                      placeholder="Enter location"
-                    />
+                     <%- include('components/input', {
+                      name: 'text',
+                      label: 'Location',
+                      id: 'location',
+                      className: 'form-control',
+                      placeholder : 'Enter Location',
+                      required : true
+                }) %>
                   </div>
 
                   <div class="mb-3">
-                    <label for="seats" class="form-label">Total Seats</label>
-                    <input
-                      name="available_seats"
-                      type="number"
-                      class="form-control"
-                      id="seats"
-                      placeholder="Total seats"
-                    />
+
+                     <%- include('components/input', {
+                      type : 'number',
+                      name: 'available_seats',
+                      label: 'Total Seats',
+                      id: 'seats',
+                      className: 'form-control',
+                      placeholder : 'Total Seats',
+                      required : true
+                }) %>
                   </div>
 
                   <div class="mb-3">
-                    <label for="banner" class="form-label">Banner</label>
-                    <input type="file" class="form-control" id="banner" name="img" />
+
+                    <%- include('components/input', {
+                      type : 'file',
+                      name: 'img',
+                      label: 'Banner',
+                      id: 'banner',
+                      className: 'form-control',
+                      required : true
+                }) %>
                   </div>
 
                   <button type="submit" class="btn btn-primary w-100">

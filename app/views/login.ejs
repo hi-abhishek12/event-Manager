@@ -35,23 +35,23 @@
 
                 <form novalidate>
                   <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      class="form-control"
-                      required
-                    />
+                    <%- include('components/input', {
+                      name: 'email',
+                      label: 'Email',
+                      id: 'email',
+                      className: 'form-control',
+                      required : true
+                }) %>
                   </div>
 
                   <div class="mb-4">
-                    <label for="password" class="form-label">Password</label>
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control"
-                      required
-                    />
+                    <%- include('components/input', {
+                      name: 'password',
+                      label: 'Password',
+                      id: 'password',
+                      className: 'form-control',
+                      required : true
+                }) %>
                   </div>
 
                   <div class="d-grid">
