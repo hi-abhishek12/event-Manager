@@ -1,6 +1,5 @@
-const express = require('express');
+const express = require("express");
 const mysql = require("mysql2/promise");
-
 
 const dbconfig = {
   host: "localhost",
@@ -12,19 +11,19 @@ const dbconfig = {
 async function upComingEvents() {
   const connection = await mysql.createConnection(dbconfig);
 
-  const result = await connection.query(
-    "SELECT * FROM eventManager.appUsers"
-  );
-  connection.end()
+  const result = await connection.query("SELECT * FROM eventManager.appUsers");
+  connection.end();
   return result[0];
-
 }
 
-async function createEventFormSubmit(req , res) {
+async function createEventFormSubmit(req, res) {
   try {
+ 
     const connection = await mysql.createConnection(dbconfig);
-    
-    const { title, description, date, time, location, available_seats, img } = req.body;
+
+    const { title, description, date, time, location, available_seats,  } =
+      req.body;
+      const img = req.file.filename
 
     const sqlCmd = `
       INSERT INTO appUsers (title, description, date, time, location, available_seats, img) 
@@ -37,21 +36,19 @@ async function createEventFormSubmit(req , res) {
       time,
       location,
       available_seats,
-      img
+      img,
     ]);
 
     // Redirect to Home Page
     res.redirect("/");
     await connection.end();
-    
   } catch (error) {
     console.log(`data base error`, error);
-    res.status(500).send("Database error: " + error.message); 
+    res.status(500).send("Database error: " + error.message);
   }
 }
 
-
 module.exports = {
   upComingEvents,
-  createEventFormSubmit
+  createEventFormSubmit,
 };

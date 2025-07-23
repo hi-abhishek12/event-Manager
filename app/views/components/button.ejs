@@ -1,5 +1,5 @@
 <button 
-    type="<%= typeof type !== 'undefined' ? type : 'text' %>"
-    class="<%= className %>">
-     <%= children %>
+  type="<%= typeof type !== 'undefined' ? type : 'button' %>"
+  class="<%= typeof className !== 'undefined' ? className : '' %>">
+  <%= typeof children !== 'undefined' ? children : '' %>
 </button>
