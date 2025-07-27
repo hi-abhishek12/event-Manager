@@ -1,5 +1,10 @@
-function signup(req , res){
-    res.render("signUp")
+
+function authenticated(req , res , next){
+  if(req.session.user){
+    res.redirect('/');
+  }else{
+    next();
+  }
 }
 
 function login(req , res){
@@ -7,6 +12,6 @@ function login(req , res){
 }
 
 module.exports ={
-  signup,
+  authenticated,
   login
 }
