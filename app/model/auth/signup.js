@@ -3,13 +3,7 @@ const bcrypt = require("bcrypt");
 const mysql = require("mysql2/promise");
 const Joi = require("joi");
 const session = require('express-session')
-
-const dbconfig = {
-  host: "localhost",
-  user: "root",
-  password: "12345678",
-  database: "eventManager",
-};
+const dbconfig = require('../../config/dbconfig')
 
 async function signup(req, res) {
   const data = {};
@@ -19,7 +13,7 @@ async function signup(req, res) {
     const { username, email, password } = req.body;
 
 
-    const inputSchema = Joi.object({
+    const signUpSchema = Joi.object({
       username: Joi.string().alphanum().min(3).max(30).required(),
       email: Joi.string()
         .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
@@ -29,7 +23,7 @@ async function signup(req, res) {
         .required(),
     });
 
-    const validation = inputSchema.validate(req.body);
+    const validation = signUpSchema.validate(req.body);
     if (validation.error) {
       data.error = validation.error.details[0].message;
       await connection.end();
@@ -48,9 +42,10 @@ async function signup(req, res) {
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
+    let is_Active = true;
     const [result] = await connection.query(
-      "INSERT INTO auth (username, email, password) VALUES (?, ?, ?)",
-      [username, email, hashPassword]
+      "INSERT INTO auth (username, email, password , is_Active) VALUES (?, ?, ?,?)",
+      [username, email, hashPassword, is_Active]
     );
 
     req.session.user = { id: result.insertId, username, email };
@@ -59,7 +54,15 @@ async function signup(req, res) {
     req.session.cookie.expires = new Date(Date.now() + 2 * 3600000);
     req.session.cookie.maxAge = 2 * 3600000;
 
-    return res.redirect("/");
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session Save Error:", err);
+        data.error = "Session could not be created.";
+        return res.render("signUp", { data });
+      }
+      return res.redirect("/");
+    });
+
 
   } catch (error) {
     console.error("Signup Error:", error);
@@ -67,9 +70,6 @@ async function signup(req, res) {
     return res.render("signUp", { data });
   }
 }
-
-
-
 
 module.exports = {
   signup,

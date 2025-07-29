@@ -1,6 +1,5 @@
 const db = require("../../model/web/webModel");
 const webController = require("../../model/web/webModel");
-const session = require('express-session');
 
 
 async function homeRoute(req, res) {

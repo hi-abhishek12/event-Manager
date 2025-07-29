@@ -17,13 +17,17 @@ router.get('/signup',authRoutes.authenticated,async(req, res) =>{
     const data = await signupModel.signup
     res.render('signUp',{data})
 })
-router.post('/signup-post',signUp.signup)
 
-router.get('/login',authRoutes.login)
+router.post('/user/signup',signUp.signup)
+
+router.get('/login',authRoutes.loginRender)
+router.post('/user/login',authRoutes.login);
+
+
+router.get('/logout',authRoutes.logout);
+
 
 // router.get('/book:id',eventBooking.eventBook)
-
-
 
 
 module.exports = router;
