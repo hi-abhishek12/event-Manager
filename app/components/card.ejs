@@ -18,8 +18,6 @@
     }
   </style>
   <body>
-
-     
     <div class="row g-4">
       <% data.forEach((item) => { %>
       <div class="col-md-6 col-lg-4">
@@ -30,18 +28,35 @@
 
           <div class="position-absolute top-0 end-0 m-2 z-3">
             <div class="d-flex gap-2">
-              <!-- Update Icon -->
-              <button class="btn btn-icon btn-light shadow-sm" title="Edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <!-- Delete Icon -->
-              <button
-                class="btn btn-icon btn-light shadow-sm text-danger"
-                title="Delete"
+              <!-- Edit Button -->
+              <form
+                action="/admin/edit/<%= item.event_id %>"
+                method="GET"
+                style="display: inline"
               >
-                <i class="bi bi-trash"></i>
-              </button>
+                <button
+                  type="submit"
+                  class="btn btn-icon btn-light shadow-sm"
+                  title="Edit"
+                >
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </form>
+
+              <!-- Delete Button -->
+              <form
+                action="/admin/delete/<%= item.event_id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-icon btn-light shadow-sm text-danger"
+                  title="Delete"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </form>
 
               <!-- Save Icon (hidden by default) -->
               <button
@@ -85,8 +100,11 @@
             </div>
 
             <!-- Book Now Button -->
-            <a href="/book:<% item.event_id %>" class="btn btn-dark w-100 rounded-pill mt-3"
-              >Book Now</a >
+            <a
+              href="/book:<% item.event_id %>"
+              class="btn btn-dark w-100 rounded-pill mt-3"
+              >Book Now</a
+            >
           </div>
         </div>
       </div>

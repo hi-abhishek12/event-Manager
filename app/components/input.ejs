@@ -9,6 +9,7 @@
     name="<%= name %>"
     placeholder="<%= typeof placeholder !== 'undefined' ? placeholder : '' %>"
     value="<%= typeof value !== 'undefined' ? value : '' %>"
-    required = "<%= typeof required !='undefined' ? required : ''%>"
+    <%= typeof accept !== 'undefined' ? `accept="${accept}"` : '' %>
+    <%= typeof required !== 'undefined' ? 'required' : '' %>
   />
 </div>

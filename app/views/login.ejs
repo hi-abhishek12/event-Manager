@@ -38,19 +38,19 @@
 
                 <form novalidate method="post" action="/user/login">
                   <div class="mb-3">
-                    <%- include('components/input', { name: 'email', label:
+                    <%- include('../components/input', { name: 'email', label:
                     'Email', id: 'email', className: 'form-control', required :
                     true }) %>
                   </div>
 
                   <div class="mb-4">
-                    <%- include('components/input', { name: 'password', label:
+                    <%- include('../components/input', { name: 'password', label:
                     'Password', id: 'password', className: 'form-control',
                     required : true }) %>
                   </div>
 
                   <div class="d-grid">
-                    <%- include('components/button',{ type : 'submit', className
+                    <%- include('../components/button',{ type : 'submit', className
                     : 'btn btn-primary btn-lg', children : 'Log In' }) %>
 
                   

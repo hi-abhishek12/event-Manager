@@ -29,7 +29,7 @@
               
             <form class="needs-validation" method="post" action="/user/signup">
               <div class="mb-3">
-                <%- include('components/input', {
+                <%- include('../components/input', {
                       name: 'username',
                       label: 'Name',
                       id: 'name',
@@ -39,7 +39,7 @@
               </div>
 
               <div class="mb-3">
-                <%- include('components/input', {
+                <%- include('../components/input', {
                       name: 'email',
                       label: 'Email',
                       id: 'email',
@@ -49,7 +49,7 @@
               </div>
 
               <div class="mb-4">
-                <%- include('components/input', {
+                <%- include('../components/input', {
                       name: 'password',
                       label: 'Password',
                       id: 'password',
@@ -59,7 +59,7 @@
               </div>
 
               <div class="d-grid">
-                <%- include('components/button',{
+                <%- include('../components/button',{
                       type : 'submit',
                       className : 'btn btn-primary btn-lg',
                       children : 'Create Account'
