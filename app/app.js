@@ -52,8 +52,7 @@ app.use(
 
 // Routing
 
-const route = require('./routes/webRoute')
-app.use('/',route);
+app.use('/',require('./routes/webRoute'));
 app.use('/user',require('./routes/webRoute'));
 app.use('/admin',require('./controller/bread/bread'))
 

@@ -1,36 +1,45 @@
 const db = require("../../model/web/webModel");
 const webController = require("../../model/web/webModel");
+const express = require('express');
+const mysql = require('mysql2/promise');
+const dbconfig = require('../../config/dbconfig');
 
-
+// Home Route
 async function homeRoute(req, res) {
-  const data = await webController.upComingEvents();
-  res.render("index", { data });
+  const events = await webController.upComingEvents();
+  res.render("index", { events });   // ✅ send array directly
 }
 
+// Create Event Page
 function createEventRoute(req, res) {
   res.render("createEvent");
 }
 
-// async function eventBook(req , res) {
-//   try {
-//     const eventId = req.body.event_id;
-//     const userId  = req.session.user_id;
-//     const event = await getEventById(eventId);
+// Search Route
+async function search(req, res) {
+  const qs_search = req.query.search || '';
+  console.log("Searching for:", qs_search);
 
-//     if(event.available_seats > 0){
-//       await db.bookSeat(eventId , userId)
-//         res.redirect('/dashboard')
-//     }else{
-//       res.redirect('/dashboard?error=noSeats');
-//     }
+  const connection = await mysql.createConnection(dbconfig);
 
-//   } catch (error) {
-//     console.log(`event booking error`,error);
-//   }
-// }
+  // ✅ Correct way to destructure results from mysql2
+  const [events] = await connection.query(
+    "SELECT * FROM cards WHERE title LIKE ?",
+    [`%${qs_search}%`]
+  );
+  await connection.end();
+
+  console.log("Fetched Events:", events);
+
+  // ✅ Send data as separate variables (easier in EJS)
+  res.render('index', {
+    events,             // Array of events
+    qs_search           // Search term
+  });
+}
 
 module.exports = {
   homeRoute,
   createEventRoute,
-  // eventBook
+  search
 };

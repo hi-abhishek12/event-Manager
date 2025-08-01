@@ -1,4 +1,12 @@
-<div class="container-fluid p-3 overflow-hidden shadow bg-color-navbar">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container-fluid p-3 overflow-hidden shadow bg-color-navbar">
   <div class="row">
     <div class="col-6 d-flex align-items-center justify-content-around">
       <h1 class="d-inline-block fw-semibold fs-3">Event</h1>
@@ -7,8 +15,10 @@
       <%- include('./input', {
         name: 'search',
         type: 'search',
+        id: 'search',
         placeholder: '🔍 Search events, categories...',
-        className: 'w-100 w-md-50 d-inline-block rounded-pill px-4 py-2 input-style'
+        className: 'w-100 w-md-50 d-inline-block rounded-pill px-4 py-2 input-style',
+        value : events.qs_search || ''
       }) %>
     </div>
 
@@ -26,3 +36,20 @@
     </div>
   </div>
 </div>
+
+
+
+</body>
+
+<script>
+document.getElementById('search').addEventListener('change', function () {
+  const tb_search = this.value.trim();
+  const curURL = '/search';
+  const queryParams = tb_search ? '?search=' + encodeURIComponent(tb_search) : '';
+  
+  console.log("Redirecting to:", curURL + queryParams); // ✅ check in console
+  window.location.href = curURL + queryParams; // ✅ this updates URL and hits backend
+});
+</script>
+
+</html>

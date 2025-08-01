@@ -1,13 +1,6 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
-
-const dbconfig = {
-  host: "localhost",
-  user: "root",
-  password: "12345678",
-  database: "eventManager",
-};
-
+const dbconfig = require('../../config/dbconfig')
 
 async function upComingEvents() {
   const connection = await mysql.createConnection(dbconfig);
@@ -17,37 +10,6 @@ async function upComingEvents() {
   return result[0];
 }
 
-async function createEventFormSubmit(req, res) {
-  try {
- 
-    const connection = await mysql.createConnection(dbconfig);
-
-    const { title, description, date, time, location, available_seats,  } =
-      req.body;
-      const img = req.file.filename
-
-    const sqlCmd = `
-      INSERT INTO cards (title, description, date, time, location, available_seats, img) 
-      VALUES (?, ?, ?, ?, ?, ?, ?)`;
-
-    await connection.query(sqlCmd, [
-      title,
-      description,
-      date,
-      time,
-      location,
-      available_seats,
-      img,
-    ]);
-
-    // Redirect to Home Page
-    res.redirect("/");
-    await connection.end();
-  } catch (error) {
-    console.log(`data base error`, error);
-    res.status(500).send("Database error: " + error.message);
-  }
-}
 
 
 // async function bookSeat(eventId, userId) {
@@ -68,6 +30,5 @@ async function createEventFormSubmit(req, res) {
 
 module.exports = {
   upComingEvents,
-  createEventFormSubmit,
   // bookSeat
 };

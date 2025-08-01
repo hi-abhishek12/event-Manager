@@ -12,7 +12,8 @@
 </head>
 
 <body>
-  <%- include('../components/navbar') %>  <!-- Navbar -->
+  <%- include('../components/navbar') %>
+  <!-- Navbar -->
 
   <!-- first Section -->
 
@@ -50,7 +51,13 @@
         </div>
       </div>
 
-      <%- include('../components/card') %>
+      <div class="row g-4">
+        <% events.forEach((item) => { %>
+        <%- include('../components/card', { item }) %>
+        <% }) %>
+      </div>
+
+
     </div>
   </section>
 
