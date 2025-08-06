@@ -44,11 +44,13 @@ async function signup(req, res) {
     const hashPassword = await bcrypt.hash(password, 10);
     let is_Active = true;
     const [result] = await connection.query(
-      "INSERT INTO auth (username, email, password , is_Active) VALUES (?, ?, ?,?)",
-      [username, email, hashPassword, is_Active]
+      "INSERT INTO auth (username, email, password , is_Active , role) VALUES (?, ?, ?, ? , ?)",
+      [username, email, hashPassword, is_Active , 'user']
     );
 
-    req.session.user = { id: result.insertId, username, email };
+ 
+    let role = 'user'
+    req.session.user = { id: result.insertId, username, email , role};
     await connection.end();
 
     req.session.cookie.expires = new Date(Date.now() + 2 * 3600000);

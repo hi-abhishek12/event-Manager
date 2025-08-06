@@ -10,6 +10,9 @@
     placeholder="<%= typeof placeholder !== 'undefined' ? placeholder : '' %>"
     value="<%= typeof value !== 'undefined' ? value : '' %>"
     <%= typeof accept !== 'undefined' ? `accept="${accept}"` : '' %>
+    <%= typeof min !== 'undefined' ? `min="${min}"` : '' %>
+    <%= typeof max !== 'undefined' ? `max="${max}"` : '' %>
+
     <%= typeof required !== 'undefined' ? 'required' : '' %>
   />
 </div>

@@ -11,23 +11,6 @@ async function upComingEvents() {
 }
 
 
-
-// async function bookSeat(eventId, userId) {
-//   // Decrease available seats
-//   await db.query(`
-//     UPDATE cards 
-//     SET available_seats = available_seats - 1 
-//     WHERE id = ? AND available_seats > 0
-//   `, [eventId]);
-
-//   // Insert booking record
-//   await db.query(`
-//     INSERT INTO bookings (user_id, event_id, booked_at)
-//     VALUES (?, ?, NOW())
-//   `, [userId, eventId]);
-// }
-
-
 module.exports = {
   upComingEvents,
   // bookSeat

@@ -5,7 +5,8 @@ const session = require('express-session')
 const app = express();
 const port = 3000;
 const MySQLStore = require("express-mysql-session")(session);
-const dbconfig = require('../app/config/dbconfig')
+const dbconfig = require('../app/config/dbconfig');
+// const { authentication } = require("./middleware/authentication");
 
 app.set("view engine", "ejs");
 
@@ -38,17 +39,13 @@ app.use(
   })
 );
 
-// CRUD OPERATIONS
+app.use((req, res, next) => {
+  res.locals.user = req.session ? req.session.user : null;
+  next();
+});
 
-// app.put("/api/cards/:id", (req, res) => {
-//   const { id } = req.params;
-//   const { title } = req.body;
-//   const card = cards.find(c => c.id == id);
-//   if (!card) return res.status(404).json({ error: "Not found" });
-//   card.title = title;
-//   res.json(card);
-// });
 
+// app.use(authentication);
 
 // Routing
 

@@ -1,112 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css" />
-  </head>
-  <style>
-    .btn-icon {
-      width: 36px;
-      height: 36px;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-  </style>
-  <body>
 
-      <div class="col-md-6 col-lg-4">
-        <div
-          class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden position-relative"
-        >
-          <!-- Action Icons (top-right corner) -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css" />
+</head>
+<style>
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+</style>
 
-          <div class="position-absolute top-0 end-0 m-2 z-3">
-            <div class="d-flex gap-2">
-              <!-- Edit Button -->
-              <form
-                action="/admin/edit/<%= item.event_id %>"
-                method="GET"
-                style="display: inline"
-              >
-                <button
-                  type="submit"
-                  class="btn btn-icon btn-light shadow-sm"
-                  title="Edit"
-                >
-                  <i class="bi bi-pencil"></i>
-                </button>
-              </form>
+<body>
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden position-relative">
+      <!-- Action Icons (top-right corner) -->
 
-              <!-- Delete Button -->
-              <form
-                action="/admin/delete/<%= item.event_id %>"
-                method="POST"
-                style="display: inline"
-              >
-                <button
-                  type="submit"
-                  class="btn btn-icon btn-light shadow-sm text-danger"
-                  title="Delete"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </form>
+      <div class="position-absolute top-0 end-0 m-2 z-3">
+        <div class="d-flex gap-2">
+          <!-- Edit Button -->
 
-              <!-- Save Icon (hidden by default) -->
-              <button
-                class="btn btn-icon btn-light shadow-sm text-success d-none"
-                title="Save"
-              >
-                <i class="bi bi-check2"></i>
-              </button>
-            </div>
-          </div>
+          <% if(user && user.role == 'admin'){ %>
+          <form action="/admin/edit/<%= item.event_id %>" method="get" style="display: inline">
+            <button type="submit" class="btn btn-icon btn-light shadow-sm" title="Edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+          </form>
+          <% } %>
 
-          <!-- Event Image -->
-          <img
-            src="/uploads/<%= item.img %>"
-            class="card-img-top object-fit-cover"
-            alt="Event image"
-            style="height: 200px"
-          />
+          <!-- Delete Button -->
+          <% if(user && user.role == 'admin'){ %>
+          <form action="/admin/delete/<%= item.event_id %>" method="post" style="display: inline">
+            <button type="submit" class="btn btn-icon btn-light shadow-sm text-danger" title="Delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+          <% } %>
 
-          <!-- Card Body -->
-          <div class="card-body d-flex flex-column justify-content-between p-4">
-            <div>
-              <h5 class="card-title fw-bold text-dark"><%= item.title %></h5>
-
-              <p class="text-muted mb-2">
-                <small><%= item.description %></small>
-              </p>
-
-              <ul class="list-unstyled small text-muted">
-                <li>
-                  <strong>Date:</strong>
-                  <%= item.date.toDateString ? item.date.toDateString() :
-                  item.date %>
-                </li>
-                <li><strong>Time:</strong> <%= item.time %></li>
-                <li><strong>Venue:</strong> <%= item.location %></li>
-                <li>
-                  <strong>Available Seats:</strong> <%= item.available_seats %>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Book Now Button -->
-            <a
-              href="/book:<% item.event_id %>"
-              class="btn btn-dark w-100 rounded-pill mt-3"
-              >Book Now</a
-            >
-          </div>
+          <!-- Save Icon (hidden by default) -->
+          <button class="btn btn-icon btn-light shadow-sm text-success d-none" title="Save">
+            <i class="bi bi-check2"></i>
+          </button>
         </div>
       </div>
-    
-  </body>
+
+      <!-- Event Image -->
+      <img src="/uploads/<%= item.img %>" class="card-img-top object-fit-cover" alt="Event image" style="height: 200px" />
+
+      <!-- Card Body -->
+      <div class="card-body d-flex flex-column justify-content-between p-4">
+        <div>
+          <h5 class="card-title fw-bold text-dark"><%= item.title %></h5>
+
+          <p class="text-muted mb-2">
+            <small><%= item.description %></small>
+          </p>
+
+          <ul class="list-unstyled small text-muted">
+            <li><strong>Price:</strong> <%= item.price %></li>
+            <li>
+              <strong>Date:</strong>
+              <%= item.date.toDateString ? item.date.toDateString() :
+                item.date %>
+            </li>
+            <li><strong>Time:</strong> <%= item.time %></li>
+            <li><strong>Venue:</strong> <%= item.location %></li>
+            <li>
+              <strong>Available Seats:</strong> <%= item.available_seats %>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Book Now Button -->
+
+        <a href="/book/<%= item.event_id  %>" class="btn btn-dark w-100 rounded-pill mt-3">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

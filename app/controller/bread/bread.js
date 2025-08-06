@@ -11,17 +11,18 @@ router.post("/create-event-submit",upload.single('img'), async(req, res)=>{
  
     const connection = await mysql.createConnection(dbconfig);
 
-    const { title, description, date, time, location, available_seats,  } =
+    const { title, description, price, date, time, location, available_seats,  } =
       req.body;
       const img = req.file.filename
 
     const sqlCmd = `
-      INSERT INTO cards (title, description, date, time, location, available_seats, img) 
-      VALUES (?, ?, ?, ?, ?, ?, ?)`;
+      INSERT INTO cards (title, description, price, date, time, location, available_seats, img) 
+      VALUES (?, ?, ?, ?, ?, ?, ?,?)`;
 
     await connection.query(sqlCmd, [
       title,
       description,
+      price,
       date,
       time,
       location,

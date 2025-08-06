@@ -44,6 +44,16 @@
                     ></textarea>
                   </div>
 
+                    <div class="mb-3">
+                     <%- include('../components/input', {
+                      name: 'price',
+                      type: 'number',
+                      label: 'Price',
+                      id: 'price',
+                      className: 'form-control',
+                }) %>
+                  </div>
+
                   <div class="mb-3">
                      <%- include('../components/input', {
                       name: 'date',
@@ -119,4 +129,7 @@
     </section>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js/lib/darkmode-js.min.js"></script>
+  <script src="/darkMode/darkMode.js"></script>
 </html>
