@@ -2,13 +2,11 @@ const Joi = require("joi");
 const mysql = require("mysql2/promise");
 const dbconfig = require("../../config/dbconfig");
 const bcrypt = require("bcrypt");
-
 const crypto = require("crypto");
-
 
 function authenticated(req, res, next) {
   if (req.session.user) {
-    res.redirect("/");
+    return res.redirect("/");
   } else {
     next();
   }
@@ -16,9 +14,9 @@ function authenticated(req, res, next) {
 
 async function loginRender(req, res) {
   try {
-    res.render("login", { 
-      data: {}, 
-      lockInfo: null 
+    res.render("login", {
+      data: {},
+      lockInfo: null,
     });
   } catch (err) {
     console.error("Login Render Error:", err);
@@ -76,7 +74,7 @@ async function login(req, res) {
     await connection.query("UPDATE auth SET session_token = ? WHERE id = ?", [sessionToken, user.id]);
 
     //  Save session
-    req.session.user = { id: user.id, email: user.email, token: sessionToken };
+    req.session.user = { id: user.id, email: user.email, token: sessionToken,role: user.role,};
     req.session.save((err) => {
       if (err) {
         console.error("Session save error:", err);
@@ -91,7 +89,6 @@ async function login(req, res) {
     return res.render("login", { data: { error: "Unexpected error occurred" } });
   }
 }
-
 //  Handles failed attempts and locks user if necessary
 
 async function lockUserOnFailedAttempts(connection, user) {
@@ -115,28 +112,28 @@ async function lockUserOnFailedAttempts(connection, user) {
     );
     return {
       status: "failed",
-      message: `Incorrect password. Failed attempts: ${user.pass_attempts + 1} of ${allowedAttempts}`,
+      message: `Incorrect password. Failed attempts: ${
+        user.pass_attempts + 1
+      } of ${allowedAttempts}`,
     };
   }
 }
 
-
-async function logout(req , res) {
-  req.session.destroy(function(err) {
-    if(err){
-      console.log(`Error in destroying Session`,err);
+async function logout(req, res) {
+  req.session.destroy(function (err) {
+    if (err) {
+      console.log(`Error in destroying Session`, err);
       res.redirect("/");
+    } else {
+      res.clearCookie("connect.sid", { path: "/" });
+      res.redirect("/login");
     }
-    else{
-      res.clearCookie("connect.sid", { path: "/" });  
-      res.redirect('/login');
-    }
-})
-} 
+  });
+}
 
 module.exports = {
   authenticated,
   login,
   loginRender,
-  logout
+  logout,
 };
